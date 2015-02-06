@@ -1,0 +1,3 @@
+[submodule "Submodules/LibXcbkptlist"]
+	path = Submodules/LibXcbkptlist
+	url = ssh://tinoheth@Rowlf.local/git/LibXcbkptlist.git

@@ -8,7 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		A551D6CD1A599BE6006A0E74 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A551D6CC1A599BE6006A0E74 /* main.swift */; };
+		A5EF1BF91A8526EB00EAC80A /* LibXcbkptlist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5EF1BF61A8526D900EAC80A /* LibXcbkptlist.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A5EF1BF51A8526D900EAC80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A551D6A21A599860006A0E74;
+			remoteInfo = LibXcbkptlist;
+		};
+		A5EF1BF71A8526D900EAC80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A551D6AD1A599860006A0E74;
+			remoteInfo = LibXcbkptlistTests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A551D6C71A599BE6006A0E74 /* CopyFiles */ = {
@@ -25,6 +43,7 @@
 /* Begin PBXFileReference section */
 		A551D6C91A599BE6006A0E74 /* Codebreaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Codebreaker; sourceTree = BUILT_PRODUCTS_DIR; };
 		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ./Codebreaker/main.swift; sourceTree = SOURCE_ROOT; };
+		A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LibXcbkptlist.xcodeproj; path = Submodules/LibXcbkptlist/LibXcbkptlist.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EF1BF91A8526EB00EAC80A /* LibXcbkptlist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +61,7 @@
 		A551D6C01A599BE6006A0E74 = {
 			isa = PBXGroup;
 			children = (
+				A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */,
 				A551D6CB1A599BE6006A0E74 /* Codebreaker */,
 				A551D6CA1A599BE6006A0E74 /* Products */,
 			);
@@ -61,6 +82,15 @@
 			);
 			name = Codebreaker;
 			path = Exterminator;
+			sourceTree = "<group>";
+		};
+		A5EF1BF11A8526D900EAC80A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5EF1BF61A8526D900EAC80A /* LibXcbkptlist.framework */,
+				A5EF1BF81A8526D900EAC80A /* LibXcbkptlistTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,12 +137,35 @@
 			mainGroup = A551D6C01A599BE6006A0E74;
 			productRefGroup = A551D6CA1A599BE6006A0E74 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A5EF1BF11A8526D900EAC80A /* Products */;
+					ProjectRef = A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A551D6C81A599BE6006A0E74 /* Codebreaker */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A5EF1BF61A8526D900EAC80A /* LibXcbkptlist.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LibXcbkptlist.framework;
+			remoteRef = A5EF1BF51A8526D900EAC80A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5EF1BF81A8526D900EAC80A /* LibXcbkptlistTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LibXcbkptlistTests.xctest;
+			remoteRef = A5EF1BF71A8526D900EAC80A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A551D6C51A599BE6006A0E74 /* Sources */ = {
@@ -146,10 +199,7 @@
 				COPY_PHASE_STRIP = NO;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					Carthage/build/Mac,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -195,10 +245,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					Carthage/build/Mac,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
