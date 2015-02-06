@@ -23,8 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A551D6C91A599BE6006A0E74 /* Exterminator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Exterminator; sourceTree = BUILT_PRODUCTS_DIR; };
-		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A551D6C91A599BE6006A0E74 /* Codebreaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Codebreaker; sourceTree = BUILT_PRODUCTS_DIR; };
+		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ./Codebreaker/main.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 		A551D6C01A599BE6006A0E74 = {
 			isa = PBXGroup;
 			children = (
-				A551D6CB1A599BE6006A0E74 /* Exterminator */,
+				A551D6CB1A599BE6006A0E74 /* Codebreaker */,
 				A551D6CA1A599BE6006A0E74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,25 +49,26 @@
 		A551D6CA1A599BE6006A0E74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A551D6C91A599BE6006A0E74 /* Exterminator */,
+				A551D6C91A599BE6006A0E74 /* Codebreaker */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A551D6CB1A599BE6006A0E74 /* Exterminator */ = {
+		A551D6CB1A599BE6006A0E74 /* Codebreaker */ = {
 			isa = PBXGroup;
 			children = (
 				A551D6CC1A599BE6006A0E74 /* main.swift */,
 			);
+			name = Codebreaker;
 			path = Exterminator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A551D6C81A599BE6006A0E74 /* Exterminator */ = {
+		A551D6C81A599BE6006A0E74 /* Codebreaker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Exterminator" */;
+			buildConfigurationList = A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Codebreaker" */;
 			buildPhases = (
 				A551D6C51A599BE6006A0E74 /* Sources */,
 				A551D6C61A599BE6006A0E74 /* Frameworks */,
@@ -77,9 +78,9 @@
 			);
 			dependencies = (
 			);
-			name = Exterminator;
+			name = Codebreaker;
 			productName = Exterminator;
-			productReference = A551D6C91A599BE6006A0E74 /* Exterminator */;
+			productReference = A551D6C91A599BE6006A0E74 /* Codebreaker */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Exterminator" */;
+			buildConfigurationList = A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Codebreaker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -108,7 +109,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A551D6C81A599BE6006A0E74 /* Exterminator */,
+				A551D6C81A599BE6006A0E74 /* Codebreaker */,
 			);
 		};
 /* End PBXProject section */
@@ -143,7 +144,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					Carthage/build/Mac,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -162,6 +168,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -185,8 +192,13 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					Carthage/build/Mac,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -197,27 +209,28 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 			};
 			name = Release;
 		};
 		A551D6D11A599BE6006A0E74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Codebreaker;
 			};
 			name = Debug;
 		};
 		A551D6D21A599BE6006A0E74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Codebreaker;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Exterminator" */ = {
+		A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Codebreaker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A551D6CE1A599BE6006A0E74 /* Debug */,
@@ -226,13 +239,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Exterminator" */ = {
+		A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Codebreaker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A551D6D11A599BE6006A0E74 /* Debug */,
 				A551D6D21A599BE6006A0E74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Exterminator.xcodeproj">
+      location = "self:Codebreaker.xcodeproj">
    </FileRef>
 </Workspace>
