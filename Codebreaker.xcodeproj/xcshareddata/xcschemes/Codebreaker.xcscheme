@@ -43,8 +43,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
-      customWorkingDirectory = "/Users/tinoheth/Projekte/Codebreaker"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "${PROJECT_DIR}"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
@@ -60,7 +60,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "&quot;${PROJECT_DIR}Submodules/LibXcbkptlist/LibXcbkptlistTests/Input/Breakpoints_v2.xcbkptlist&quot;"
+            argument = "&quot;${PROJECT_DIR}/Submodules/LibXcbkptlist/LibXcbkptlistTests/Input/Breakpoints_v2.xcbkptlist&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Codebreaker.xcodeproj"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "*"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
