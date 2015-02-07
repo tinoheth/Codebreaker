@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A50FA3C61A86222D00402759 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA3C51A86222300402759 /* XMLParser.swift */; };
 		A551D6CD1A599BE6006A0E74 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A551D6CC1A599BE6006A0E74 /* main.swift */; };
+		A5578D1C1A869B2700C5A46E /* BreakpointFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5578D1B1A869B2700C5A46E /* BreakpointFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		A50FA3C51A86222300402759 /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		A551D6C91A599BE6006A0E74 /* Codebreaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Codebreaker; sourceTree = BUILT_PRODUCTS_DIR; };
 		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ./Codebreaker/main.swift; sourceTree = SOURCE_ROOT; };
+		A5578D1B1A869B2700C5A46E /* BreakpointFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakpointFile.swift; sourceTree = "<group>"; };
 		A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LibXcbkptlist.xcodeproj; path = Submodules/LibXcbkptlist/LibXcbkptlist.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				A50FA3C51A86222300402759 /* XMLParser.swift */,
+				A5578D1B1A869B2700C5A46E /* BreakpointFile.swift */,
 			);
 			name = LibXcbkptlist;
 			path = Submodules/LibXcbkptlist/LibXcbkptlist/LibXcbkptlist;
@@ -191,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50FA3C61A86222D00402759 /* XMLParser.swift in Sources */,
+				A5578D1C1A869B2700C5A46E /* BreakpointFile.swift in Sources */,
 				A551D6CD1A599BE6006A0E74 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
