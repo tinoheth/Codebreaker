@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50FA3C61A86222D00402759 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50FA3C51A86222300402759 /* XMLParser.swift */; };
 		A551D6CD1A599BE6006A0E74 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A551D6CC1A599BE6006A0E74 /* main.swift */; };
-		A5EF1BF91A8526EB00EAC80A /* LibXcbkptlist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5EF1BF61A8526D900EAC80A /* LibXcbkptlist.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +26,13 @@
 			remoteGlobalIDString = A551D6AD1A599860006A0E74;
 			remoteInfo = LibXcbkptlistTests;
 		};
+		A5EF1BFC1A852A0C00EAC80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A551D6A11A599860006A0E74;
+			remoteInfo = LibXcbkptlist;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A50FA3C51A86222300402759 /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		A551D6C91A599BE6006A0E74 /* Codebreaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Codebreaker; sourceTree = BUILT_PRODUCTS_DIR; };
 		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ./Codebreaker/main.swift; sourceTree = SOURCE_ROOT; };
 		A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LibXcbkptlist.xcodeproj; path = Submodules/LibXcbkptlist/LibXcbkptlist.xcodeproj; sourceTree = "<group>"; };
@@ -51,17 +59,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5EF1BF91A8526EB00EAC80A /* LibXcbkptlist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A50FA3C41A86222300402759 /* LibXcbkptlist */ = {
+			isa = PBXGroup;
+			children = (
+				A50FA3C51A86222300402759 /* XMLParser.swift */,
+			);
+			name = LibXcbkptlist;
+			path = Submodules/LibXcbkptlist/LibXcbkptlist/LibXcbkptlist;
+			sourceTree = "<group>";
+		};
 		A551D6C01A599BE6006A0E74 = {
 			isa = PBXGroup;
 			children = (
 				A5EF1BF01A8526D900EAC80A /* LibXcbkptlist.xcodeproj */,
+				A50FA3C41A86222300402759 /* LibXcbkptlist */,
 				A551D6CB1A599BE6006A0E74 /* Codebreaker */,
 				A551D6CA1A599BE6006A0E74 /* Products */,
 			);
@@ -107,6 +124,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A5EF1BFD1A852A0C00EAC80A /* PBXTargetDependency */,
 			);
 			name = Codebreaker;
 			productName = Exterminator;
@@ -172,11 +190,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A50FA3C61A86222D00402759 /* XMLParser.swift in Sources */,
 				A551D6CD1A599BE6006A0E74 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A5EF1BFD1A852A0C00EAC80A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LibXcbkptlist;
+			targetProxy = A5EF1BFC1A852A0C00EAC80A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A551D6CE1A599BE6006A0E74 /* Debug */ = {
@@ -197,7 +224,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -214,6 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -242,7 +270,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -253,6 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
