@@ -24,11 +24,42 @@ func walk(root: NSXMLElement) {
 	}
 }
 
+func findSourceFiles(inDirectory directory: NSURL, suffixes: Set<String> = Set(["swift"])) -> [NSURL] {
+	func filter(url: NSURL) -> Bool {
+		if let pathExtension = url.pathExtension where suffixes.contains(pathExtension) {
+			return true
+		} else {
+			return false
+		}
+	}
+	
+	var result = [NSURL]()
+	let iter = NSFileManager.defaultManager().enumeratorAtURL(directory, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, errorHandler: nil)
+	while let current = iter?.nextObject() as? NSURL {
+		if filter(current) {
+			result.append(current)
+		}
+	}
+	return result
+}
+
+extension NSScanner {
+	func scanPastString(string: String) -> Bool {
+		self.scanUpToString(string, intoString: nil)
+		if self.scanString(string, intoString: nil) {
+			return true
+		} else {
+			return false
+		}
+	}
+}
+
 func main() {
 	let directory = NSFileManager.defaultManager().currentDirectoryPath
 	println("Running in directory \(directory)")
 	var targetURL: NSURL?
 	var sourceFiles = [NSURL]()
+	var baseURL = NSURL(fileURLWithPath: directory, isDirectory: true)
 	for argument in Process.arguments[1..<Process.arguments.count] {
 		let type = argument.pathExtension
 		if type == "m" {
@@ -48,14 +79,14 @@ func main() {
 		if let data = NSData(contentsOfURL: targetURL) {
 			if let xml = NSXMLDocument(data: data, options: 0, error: nil) {
 				let doc = BreakpointFile(xmlDocument: xml)
-				let list = doc.fileBreakpointsForPath(doc.registeredFiles().first)
-				if let br = list.last {
-					br.ignoreCount = 44
+				
+				if let baseURL = baseURL where sourceFiles.count == 0 {
+					sourceFiles = findSourceFiles(inDirectory: baseURL)
 				}
-				if let br = list.first {
-					doc.deleteBreakpoint(br)
-					br.startingLineNumber = 33
-					doc.addFileBreakpoint(br)
+				for file in sourceFiles {
+					for breakpoint in extractBreakpoints(fromURL: file) {
+						doc.addFileBreakpoint(breakpoint)
+					}
 				}
 				doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
 			}
