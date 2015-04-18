@@ -81,20 +81,20 @@ println(self)
 	#endif
 	if let targetURL = targetURL {
 		println("Using file \(targetURL)")
-		if let data = NSData(contentsOfURL: targetURL) {
-			if let xml = NSXMLDocument(data: data, options: 0, error: nil) {
-				let doc = BreakpointFile(xmlDocument: xml)
-				
-				if let baseURL = baseURL where sourceFiles.count == 0 {
-					sourceFiles = findSourceFiles(inDirectory: baseURL)
-				}
-				let extractor = BreakpointExtractor(handler: doc.addFileBreakpoint)
-				for file in sourceFiles {
-					extractor.parseFile(file)
-				}
-				doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
-			}
+		let doc: BreakpointFile
+		if let data = NSData(contentsOfURL: targetURL), xml = NSXMLDocument(data: data, options: 0, error: nil) {
+			doc = BreakpointFile(xmlDocument: xml)
+		} else {
+			doc = BreakpointFile()
 		}
+		if let baseURL = baseURL where sourceFiles.count == 0 {
+			sourceFiles = findSourceFiles(inDirectory: baseURL)
+		}
+		let extractor = BreakpointExtractor(handler: doc.addFileBreakpoint)
+		for file in sourceFiles {
+			extractor.parseFile(file)
+		}
+		doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
 		if let components = targetURL.pathComponents as? [String] {
 			let last = components.count - 5
 			if last > 0 {
