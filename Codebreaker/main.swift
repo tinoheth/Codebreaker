@@ -70,10 +70,15 @@ func main() {
 			targetURL = NSURL(fileURLWithPath: argument)
 		} else if type == "xcworkspace" || type == "xcodeproj" {
 			if let user = NSProcessInfo.processInfo().environment["USER"] as? String {
-				targetURL = NSURL(fileURLWithPath: directory.stringByAppendingPathComponent(argument).stringByAppendingPathComponent("xcuserdata/\(user).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist"))
+				targetURL = NSURL(fileURLWithPath: argument.stringByAppendingPathComponent("xcuserdata/\(user).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist"))
+				baseURL = NSURL(fileURLWithPath: argument.stringByDeletingLastPathComponent, isDirectory: true)
 			}
 		}
 	}
+	#if codebreak
+println("Codebreak")
+println(self)
+	#endif
 	if let targetURL = targetURL {
 		println("Using file \(targetURL)")
 		if let data = NSData(contentsOfURL: targetURL) {
@@ -83,15 +88,13 @@ func main() {
 				if let baseURL = baseURL where sourceFiles.count == 0 {
 					sourceFiles = findSourceFiles(inDirectory: baseURL)
 				}
+				let extractor = BreakpointExtractor(handler: doc.addFileBreakpoint)
 				for file in sourceFiles {
-					for breakpoint in extractBreakpoints(fromURL: file) {
-						doc.addFileBreakpoint(breakpoint)
-					}
+					extractor.parseFile(file)
 				}
 				doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
 			}
 		}
-		
 		if let components = targetURL.pathComponents as? [String] {
 			let last = components.count - 5
 			if last > 0 {

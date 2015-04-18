@@ -49,7 +49,8 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A551D6C81A599BE6006A0E74"
@@ -60,15 +61,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "&quot;${PROJECT_DIR}/Submodules/LibXcbkptlist/LibXcbkptlistTests/Input/Breakpoints_v2.xcbkptlist&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "Codebreaker.xcodeproj"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "*"
+            argument = "/Users/tinoheth/Projekte/Test/Test.xcodeproj"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -81,7 +74,8 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A551D6C81A599BE6006A0E74"

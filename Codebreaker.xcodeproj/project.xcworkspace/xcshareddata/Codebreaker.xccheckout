@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C86CABF5-610A-415A-B733-0E4046C6743E</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Codebreaker</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4FF7644C2FFA6755A64FA9C1634AF4F5D1C0EFC8</key>
@@ -16,7 +16,7 @@
 		<string>ssh://rowlf.local/git/Codebreaker.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Codebreaker.xcodeproj</string>
+	<string>Codebreaker.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4FF7644C2FFA6755A64FA9C1634AF4F5D1C0EFC8</key>

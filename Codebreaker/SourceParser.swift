@@ -12,9 +12,9 @@ class BreakpointExtractor {
 	class Context {
 		let fileURL: NSURL
 		var lineNumber = 1
-		let handler: (Breakpoint) -> Void
+		let handler: (FileBreakpoint) -> Void
 		
-		init(fileURL: NSURL, handler: (Breakpoint) -> Void) {
+		init(fileURL: NSURL, handler: (FileBreakpoint) -> Void) {
 			self.fileURL = fileURL
 			self.handler = handler
 		}
@@ -99,9 +99,8 @@ class BreakpointExtractor {
 			if quote {
 				if input == "\"" && history != "\\" {
 					quote = false
-				} else {
-					bufferString.append(input)
 				}
+				bufferString.append(input)
 			} else {
 				switch (input) {
 				case " ":
@@ -109,6 +108,8 @@ class BreakpointExtractor {
 				case "=":
 					// key scanned, look for value...
 					break
+				case "\n":
+					return ActionScanner(breakpoint: breakpoint)
 				default:
 					bufferString.append(input)
 				}
@@ -123,9 +124,8 @@ class BreakpointExtractor {
 			if quote {
 				if input == "\"" && history != "\\" {
 					quote = false
-				} else {
-					bufferString.append(input)
 				}
+				bufferString.append(input)
 			} else if input == "\n" {
 				if history != "{" {
 					bufferString.append(Character(";"))
@@ -134,8 +134,9 @@ class BreakpointExtractor {
 				bufferString.append(input)
 				quote = true
 			} else if input == "#" {
+				println("Found breakpoint in \(context.fileURL) at \(context.lineNumber)")
 				breakpoint.startingLineNumber = UInt(context.lineNumber)
-				breakpoint.actions.append(DebuggerCommandAction(command: bufferString))
+				breakpoint.actions.append(DebuggerCommandAction(command: "expr " + bufferString))
 				context.handler(breakpoint)
 				return Skipper()
 			} else {
@@ -146,9 +147,9 @@ class BreakpointExtractor {
 		}
 	}
 	
-	private let handler: (Breakpoint) -> Void
+	private let handler: (FileBreakpoint) -> Void
 	
-	init(handler: (Breakpoint) -> Void) {
+	init(handler: (FileBreakpoint) -> Void) {
 		self.handler = handler
 	}
 	
@@ -167,34 +168,4 @@ class BreakpointExtractor {
 			}
 		}
 	}
-}
-
-func extractBreakpoints(fromURL url: NSURL) -> [FileBreakpoint] {
-	func lookForStart(scanner: NSScanner, path: String, lineNumber: Int) {
-		if scanner.scanPastString("#if") {
-			if scanner.scanString("codebreak", intoString: nil) {
-				let br = FileBreakpoint(path: path, lineNumber: UInt(lineNumber + 1))
-				br.ignoreCount = 99
-				//result.append(br)
-			}
-			
-			#if codebreak
-				println("It works!\nBreak an \(path)")
-			#endif
-		}
-	}
-	func lookForEnd() {
-	}
-	
-	var result = [FileBreakpoint]()
-	if let path = url.relativePath, lines = String(contentsOfURL: url, usedEncoding: nil, error: nil)?.componentsSeparatedByString("\n") {
-		var action = lookForStart
-		var lineNumber = 0
-		while lineNumber < lines.count {
-			let line = lines[lineNumber]
-			let scanner = NSScanner(string: line)
-			//action(scanner, path, lineNumber)
-		}
-	}
-	return result
 }
