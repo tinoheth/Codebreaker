@@ -83,9 +83,10 @@ class BreakpointExtractor {
 	
 	class ConfigurationScanner: Scanner {
 		var quote = false
-		var bufferString = ""
+		var bufferString = "codebreak"
 		var breakpoint: FileBreakpoint
 		private var history: Character = " "
+		var key: String?
 		
 		init(breakpoint: FileBreakpoint) {
 			self.breakpoint = breakpoint
@@ -94,7 +95,23 @@ class BreakpointExtractor {
 		convenience init(fileURL: NSURL) {
 			self.init(breakpoint: FileBreakpoint(path: fileURL.path!, lineNumber: 0))
 		}
-		
+
+		func handleConfiguration(key: String?, value: String) {
+			if let key = key {
+				println("\(key) = \(bufferString)")
+				switch (key) {
+				case "codebreak":
+					breakpoint.continueAfterRunningActions = (value == "false")
+				case "enabled":
+					breakpoint.enabled = (value == "true")
+				case "ignore":
+					breakpoint.ignoreCount = (value as NSString).integerValue
+				default:
+					break
+				}
+			}
+		}
+
 		override func scanChar(input: Character, context: Context) -> BreakpointExtractor.Scanner {
 			if quote {
 				if input == "\"" && history != "\\" {
@@ -103,12 +120,19 @@ class BreakpointExtractor {
 				bufferString.append(input)
 			} else {
 				switch (input) {
-				case " ":
+				case " ", "&":
+					handleConfiguration(key, value: bufferString)
+					key = nil
+					bufferString = ""
 					break
 				case "=":
 					// key scanned, look for value...
+					println("Key found " + bufferString)
+					key = bufferString
+					bufferString = ""
 					break
 				case "\n":
+					self.handleConfiguration(key, value: bufferString)
 					return ActionScanner(breakpoint: breakpoint)
 				default:
 					bufferString.append(input)

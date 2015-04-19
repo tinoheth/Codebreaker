@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum FileExtension: String {
+	case Project = "xcodeproj"
+	case Workspace = "xcworkspace"
+	case Breakpoints = "xcbkptlist"
+	case SwiftSource = "swift"
+}
+
 func walk(root: NSXMLElement) {
 	println(root.name!)
 	if let attributes = root.attributes as? [NSXMLNode] {
@@ -24,7 +31,7 @@ func walk(root: NSXMLElement) {
 	}
 }
 
-func findSourceFiles(inDirectory directory: NSURL, suffixes: Set<String> = Set(["swift"])) -> [NSURL] {
+func findSourceFiles(inDirectory directory: NSURL, suffixes: Set<String> = Set([FileExtension.SwiftSource.rawValue])) -> [NSURL] {
 	func filter(url: NSURL) -> Bool {
 		if let pathExtension = url.pathExtension where suffixes.contains(pathExtension) {
 			return true
@@ -54,31 +61,56 @@ extension NSScanner {
 	}
 }
 
+func extractProjectFile(argument: String) -> (NSURL?, NSURL?) {
+	var targetURL: NSURL?
+	var baseURL: NSURL?
+	if let user = NSProcessInfo.processInfo().environment["USER"] as? String {
+		targetURL = NSURL(fileURLWithPath: argument.stringByAppendingPathComponent("xcuserdata/\(user).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist"))
+		baseURL = NSURL(fileURLWithPath: argument.stringByDeletingLastPathComponent, isDirectory: true)
+	}
+	return (targetURL, baseURL)
+}
+
 func main() {
 	let directory = NSFileManager.defaultManager().currentDirectoryPath
 	println("Running in directory \(directory)")
 	var targetURL: NSURL?
 	var sourceFiles = [NSURL]()
 	var baseURL = NSURL(fileURLWithPath: directory, isDirectory: true)
+	var isDirectory: ObjCBool = false
 	for argument in Process.arguments[1..<Process.arguments.count] {
 		let type = argument.pathExtension
-		if type == "m" {
+		if type == FileExtension.SwiftSource.rawValue {
 			if let url = NSURL(fileURLWithPath: argument) {
 				sourceFiles.append(url)
 			}
-		} else if type == "xcbkptlist" {
+		} else if type == FileExtension.Breakpoints.rawValue {
 			targetURL = NSURL(fileURLWithPath: argument)
-		} else if type == "xcworkspace" || type == "xcodeproj" {
-			if let user = NSProcessInfo.processInfo().environment["USER"] as? String {
-				targetURL = NSURL(fileURLWithPath: argument.stringByAppendingPathComponent("xcuserdata/\(user).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist"))
-				baseURL = NSURL(fileURLWithPath: argument.stringByDeletingLastPathComponent, isDirectory: true)
-			}
+		} else if type == FileExtension.Workspace.rawValue || type == FileExtension.Project.rawValue {
+			(targetURL, baseURL) = extractProjectFile(argument)
+		} else if NSFileManager.defaultManager().fileExistsAtPath(argument, isDirectory: &isDirectory) && isDirectory {
+			baseURL = NSURL(fileURLWithPath: argument, isDirectory: true)
 		}
 	}
 	#if codebreak
 println("Codebreak")
 println(self)
 	#endif
+	if targetURL == nil {
+		if let baseURL = baseURL {
+			if let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(baseURL, includingPropertiesForKeys: nil,
+				options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, error: nil) {
+				let candidates = contents.filter { current in
+					return current.pathExtension == FileExtension.Project.rawValue || current.pathExtension == FileExtension.Workspace.rawValue
+				}
+				if let candidate = candidates.first as? NSURL where candidates.count == 1 {
+					if let argument = candidate.path {
+						(targetURL, _) = extractProjectFile(argument)
+					}
+				}
+			}
+		}
+	}
 	if let targetURL = targetURL {
 		println("Using file \(targetURL)")
 		let doc: BreakpointFile
