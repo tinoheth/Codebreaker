@@ -80,20 +80,28 @@ class BreakpointExtractor {
 			}
 		}
 	}
-	
-	class ConfigurationScanner: Scanner {
+
+	class BasicScanner: Scanner {
 		var quote = false
-		var bufferString = "codebreak"
+		var bufferString = ""
 		var breakpoint: FileBreakpoint
 		private var history: Character = " "
-		var key: String?
-		
+
 		init(breakpoint: FileBreakpoint) {
 			self.breakpoint = breakpoint
 		}
 		
 		convenience init(fileURL: NSURL) {
 			self.init(breakpoint: FileBreakpoint(path: fileURL.path!, lineNumber: 0))
+		}
+	}
+
+	class ConfigurationScanner: BasicScanner {
+		var key: String?
+
+		override init(breakpoint: FileBreakpoint) {
+			super.init(breakpoint: breakpoint)
+			bufferString = "codebreak"
 		}
 
 		func handleConfiguration(key: String?, value: String) {
@@ -143,7 +151,7 @@ class BreakpointExtractor {
 		}
 	}
 	
-	class ActionScanner: ConfigurationScanner {
+	class ActionScanner: BasicScanner {
 		override func scanChar(input: Character, context: Context) -> BreakpointExtractor.Scanner {
 			if quote {
 				if input == "\"" && history != "\\" {

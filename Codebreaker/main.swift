@@ -92,7 +92,7 @@ func main() {
 			baseURL = NSURL(fileURLWithPath: argument, isDirectory: true)
 		}
 	}
-	#if codebreak
+	#if codebreak=false
 println("Codebreak")
 println(self)
 	#endif
