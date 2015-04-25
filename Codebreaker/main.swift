@@ -102,9 +102,6 @@ func main() {
 			}
 		}
 	}
-	#if codebreak=false && tag
-println("Codebreak")
-	#endif
 	if targetURL == nil {
 		if let baseURL = baseURL {
 			if let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(baseURL, includingPropertiesForKeys: nil,
