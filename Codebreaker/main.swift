@@ -72,6 +72,7 @@ func extractProjectFile(argument: String) -> (NSURL?, NSURL?) {
 }
 
 func main() {
+	var ignoreChangeDate = false
 	let directory = NSFileManager.defaultManager().currentDirectoryPath
 	println("Running in directory \(directory)")
 	var targetURL: NSURL?
@@ -79,22 +80,30 @@ func main() {
 	var baseURL = NSURL(fileURLWithPath: directory, isDirectory: true)
 	var isDirectory: ObjCBool = false
 	for argument in Process.arguments[1..<Process.arguments.count] {
-		let type = argument.pathExtension
-		if type == FileExtension.SwiftSource.rawValue {
-			if let url = NSURL(fileURLWithPath: argument) {
-				sourceFiles.append(url)
+		if argument.hasPrefix("-") {
+			switch (argument) {
+			case "-f", "--force":
+				ignoreChangeDate = true
+			default:
+				break
 			}
-		} else if type == FileExtension.Breakpoints.rawValue {
-			targetURL = NSURL(fileURLWithPath: argument)
-		} else if type == FileExtension.Workspace.rawValue || type == FileExtension.Project.rawValue {
-			(targetURL, baseURL) = extractProjectFile(argument)
-		} else if NSFileManager.defaultManager().fileExistsAtPath(argument, isDirectory: &isDirectory) && isDirectory {
-			baseURL = NSURL(fileURLWithPath: argument, isDirectory: true)
+		} else {
+			let type = argument.pathExtension
+			if type == FileExtension.SwiftSource.rawValue {
+				if let url = NSURL(fileURLWithPath: argument) {
+					sourceFiles.append(url)
+				}
+			} else if type == FileExtension.Breakpoints.rawValue {
+				targetURL = NSURL(fileURLWithPath: argument)
+			} else if type == FileExtension.Workspace.rawValue || type == FileExtension.Project.rawValue {
+				(targetURL, baseURL) = extractProjectFile(argument)
+			} else if NSFileManager.defaultManager().fileExistsAtPath(argument, isDirectory: &isDirectory) && isDirectory {
+				baseURL = NSURL(fileURLWithPath: argument, isDirectory: true)
+			}
 		}
 	}
-	#if codebreak=false
+	#if codebreak=false && tag
 println("Codebreak")
-println(self)
 	#endif
 	if targetURL == nil {
 		if let baseURL = baseURL {
@@ -113,18 +122,20 @@ println(self)
 	}
 	if let targetURL = targetURL {
 		println("Using file \(targetURL)")
-		let doc: BreakpointFile
-		if let data = NSData(contentsOfURL: targetURL), xml = NSXMLDocument(data: data, options: 0, error: nil) {
-			doc = BreakpointFile(xmlDocument: xml)
-		} else {
-			doc = BreakpointFile()
-		}
+		let doc = BreakpointFile(fileURL: targetURL)
 		if let baseURL = baseURL where sourceFiles.count == 0 {
 			sourceFiles = findSourceFiles(inDirectory: baseURL)
+		} else {
+			ignoreChangeDate = true
 		}
 		let extractor = BreakpointExtractor(handler: doc.addFileBreakpoint)
-		for file in sourceFiles {
-			extractor.parseFile(file)
+		for file: NSURL in sourceFiles {
+			var date: AnyObject?
+			if ignoreChangeDate {
+				extractor.parseFile(file)
+			} else if file.getResourceValue(&date, forKey: NSURLAttributeModificationDateKey, error: nil) && date?.timeIntervalSinceDate(doc.lastUpdate) > 0 {
+				extractor.parseFile(file)
+			}
 		}
 		doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
 		if let components = targetURL.pathComponents as? [String] {

@@ -6,90 +6,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Codebreaker/SourceParser.swift"
-            timestampString = "0"
-            startingColumnNumber = "0"
-            endingColumnNumber = "0"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            timestampString = "451484644.976502"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "scanChar(_:context:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Codebreaker/SourceParser.swift"
-            timestampString = "0"
-            startingColumnNumber = "0"
-            endingColumnNumber = "0"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "scanChar(_:context:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Codebreaker/SourceParser.swift"
-            timestampString = "0"
-            startingColumnNumber = "0"
-            endingColumnNumber = "0"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "scanChar(_:context:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Codebreaker/SourceParser.swift"
-            timestampString = "0"
-            startingColumnNumber = "0"
-            endingColumnNumber = "0"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "ConfigurationScanner"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "Yes"
-            filePath = "Codebreaker/main.swift"
-            timestampString = "0"
-            startingColumnNumber = "0"
-            endingColumnNumber = "0"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            creator = "codebreaker.t-no.de"
-            landmarkName = "main()"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "expr println(&quot;Codebreak&quot;);println(self); ">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -114,9 +114,14 @@ class BreakpointExtractor {
 					breakpoint.enabled = (value == "true")
 				case "ignore":
 					breakpoint.ignoreCount = (value as NSString).integerValue
+				case "tag":
+					breakpoint.tags.append(value)
 				default:
+					fatalError("Codebreaker: \(key) is not a valid identifier")
 					break
 				}
+			} else if value != "" {
+				breakpoint.tags.append(value)
 			}
 		}
 
