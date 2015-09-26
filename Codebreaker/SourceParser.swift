@@ -106,7 +106,7 @@ class BreakpointExtractor {
 
 		func handleConfiguration(key: String?, value: String) {
 			if let key = key {
-				println("\(key) = \(bufferString)")
+				print("\(key) = \(bufferString)")
 				switch (key) {
 				case "codebreak":
 					breakpoint.continueAfterRunningActions = (value == "false")
@@ -140,7 +140,7 @@ class BreakpointExtractor {
 					break
 				case "=":
 					// key scanned, look for value...
-					println("Key found " + bufferString)
+					print("Key found " + bufferString)
 					key = bufferString
 					bufferString = ""
 					break
@@ -171,7 +171,7 @@ class BreakpointExtractor {
 				bufferString.append(input)
 				quote = true
 			} else if input == "#" {
-				println("Found breakpoint in \(context.fileURL) at \(context.lineNumber)")
+				print("Found breakpoint in \(context.fileURL) at \(context.lineNumber)")
 				breakpoint.startingLineNumber = UInt(context.lineNumber)
 				breakpoint.actions.append(DebuggerCommandAction(command: "expr " + bufferString))
 				context.handler(breakpoint)
@@ -191,7 +191,8 @@ class BreakpointExtractor {
 	}
 	
 	func parseFile(url: NSURL) {
-		if let input = String(contentsOfURL: url, usedEncoding: nil, error: nil) {
+		print("Parsing file \(url)")
+		if let input = try? String(contentsOfURL: url, usedEncoding: nil) {
 			let context = Context(fileURL: url, handler: handler)
 			var scanner: Scanner = Skipper()
 			var index = input.startIndex

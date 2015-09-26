@@ -9,7 +9,7 @@
 import Foundation
 
 println("Hello, World!")
-#if codebreak=true && ignore=10 && enabled=true && MyTag && tag=Mark
+#if codebreak=true && ignore=40 && enabled=true && MyTag && tag=Mark
 	println("Look at me")
 	println("I'm a breakpoint action")
 	println("No self in here")

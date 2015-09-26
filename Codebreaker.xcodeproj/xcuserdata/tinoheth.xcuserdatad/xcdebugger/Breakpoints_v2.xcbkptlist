@@ -9,21 +9,54 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Codebreaker/SourceParser.swift"
+            filePath = "Codebreaker/main.swift"
             timestampString = "0"
             startingColumnNumber = "0"
             endingColumnNumber = "0"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "scanChar(_:context:)"
-            landmarkType = "5">
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "main()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
-            ignoreCount = "10"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Codebreaker/main.swift"
+            timestampString = "0"
+            startingColumnNumber = "0"
+            endingColumnNumber = "0"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            creator = "codebreaker.t-no.de"
+            landmarkName = "main()"
+            landmarkType = "7">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "expr  print(&quot;Hello!&quot;);">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Tags>
+               <Tag
+                  name = "MyTag">
+               </Tag>
+               <Tag
+                  name = "Mark">
+               </Tag>
+            </Tags>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "40"
             continueAfterRunningActions = "No"
             filePath = "Testproject/Test/main.swift"
             timestampString = "0"

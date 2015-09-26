@@ -16,11 +16,11 @@ enum FileExtension: String {
 }
 
 func walk(root: NSXMLElement) {
-	println(root.name!)
-	if let attributes = root.attributes as? [NSXMLNode] {
+	print(root.name!)
+	if let attributes = root.attributes {
 		for attribute in attributes {
 			if let name = attribute.name {
-				println("\(name) = \(attribute.objectValue!)")
+				print("\(name) = \(attribute.objectValue!)")
 			}
 		}
 	}
@@ -63,21 +63,28 @@ extension NSScanner {
 
 func extractProjectFile(argument: String) -> (NSURL?, NSURL?) {
 	var targetURL: NSURL?
-	var baseURL: NSURL?
-	if let user = NSProcessInfo.processInfo().environment["USER"] as? String {
-		targetURL = NSURL(fileURLWithPath: argument.stringByAppendingPathComponent("xcuserdata/\(user).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist"))
-		baseURL = NSURL(fileURLWithPath: argument.stringByDeletingLastPathComponent, isDirectory: true)
+	let baseURL: NSURL?
+	if let user = NSProcessInfo.processInfo().environment["USER"] {
+		let argURL = NSURL(fileURLWithPath: argument)
+		targetURL = argURL.URLByAppendingPathComponent("xcuserdata/\(user).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist")
+		baseURL = argURL.URLByDeletingLastPathComponent
+	} else {
+		baseURL = nil
 	}
 	return (targetURL, baseURL)
 }
 
 func main() {
+#if codebreak=true && ignore=0 && enabled=true && MyTag && tag=Mark
+	print("Hello!")
+#endif
+
 	var ignoreChangeDate = false
 	let directory = NSFileManager.defaultManager().currentDirectoryPath
-	println("Running in directory \(directory)")
+	print("Running in directory \(directory)")
 	var targetURL: NSURL?
 	var sourceFiles = [NSURL]()
-	var baseURL = NSURL(fileURLWithPath: directory, isDirectory: true)
+	var baseURL: NSURL? = NSURL(fileURLWithPath: directory, isDirectory: true)
 	var isDirectory: ObjCBool = false
 	for argument in Process.arguments[1..<Process.arguments.count] {
 		if argument.hasPrefix("-") {
@@ -88,11 +95,10 @@ func main() {
 				break
 			}
 		} else {
-			let type = argument.pathExtension
+			let argURL = NSURL(fileURLWithPath: argument)
+			let type = argURL.pathExtension
 			if type == FileExtension.SwiftSource.rawValue {
-				if let url = NSURL(fileURLWithPath: argument) {
-					sourceFiles.append(url)
-				}
+				sourceFiles.append(argURL)
 			} else if type == FileExtension.Breakpoints.rawValue {
 				targetURL = NSURL(fileURLWithPath: argument)
 			} else if type == FileExtension.Workspace.rawValue || type == FileExtension.Project.rawValue {
@@ -104,12 +110,12 @@ func main() {
 	}
 	if targetURL == nil {
 		if let baseURL = baseURL {
-			if let contents = NSFileManager.defaultManager().contentsOfDirectoryAtURL(baseURL, includingPropertiesForKeys: nil,
-				options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, error: nil) {
+			if let contents = try? NSFileManager.defaultManager().contentsOfDirectoryAtURL(baseURL, includingPropertiesForKeys: nil,
+				options: NSDirectoryEnumerationOptions.SkipsHiddenFiles) {
 				let candidates = contents.filter { current in
 					return current.pathExtension == FileExtension.Project.rawValue || current.pathExtension == FileExtension.Workspace.rawValue
 				}
-				if let candidate = candidates.first as? NSURL where candidates.count == 1 {
+				if let candidate = candidates.first where candidates.count == 1 {
 					if let argument = candidate.path {
 						(targetURL, _) = extractProjectFile(argument)
 					}
@@ -118,7 +124,7 @@ func main() {
 		}
 	}
 	if let targetURL = targetURL {
-		println("Using file \(targetURL)")
+		print("Using file \(targetURL)")
 		let doc = BreakpointFile(fileURL: targetURL)
 		if let baseURL = baseURL where sourceFiles.count == 0 {
 			sourceFiles = findSourceFiles(inDirectory: baseURL)
@@ -130,22 +136,28 @@ func main() {
 			var date: AnyObject?
 			if ignoreChangeDate {
 				extractor.parseFile(file)
-			} else if file.getResourceValue(&date, forKey: NSURLAttributeModificationDateKey, error: nil) && date?.timeIntervalSinceDate(doc.lastUpdate) > 0 {
-				extractor.parseFile(file)
+			} else {
+				try! file.getResourceValue(&date, forKey: NSURLAttributeModificationDateKey)
+				if date?.timeIntervalSinceDate(doc.lastUpdate) > 0 {
+					extractor.parseFile(file)
+				}
 			}
 		}
 		doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
-		if let components = targetURL.pathComponents as? [String] {
+		if let components = targetURL.pathComponents {
 			let last = components.count - 5
 			if last > 0 {
-				let start = NSURL(fileURLWithPath: "/")!
+				let start = NSURL(fileURLWithPath: "/")
 				let container = components[0...last].reduce(start) { url, component in
 					return url.URLByAppendingPathComponent(component)
 				}
 				let projectFile = container.URLByAppendingPathComponent("project.pbxproj")
 				var err: NSError?
-				if !NSFileManager.defaultManager().setAttributes([NSFileModificationDate: NSDate()], ofItemAtPath: projectFile.path!, error: &err) {
-					println(err)
+				do {
+					try NSFileManager.defaultManager().setAttributes([NSFileModificationDate: NSDate()], ofItemAtPath: projectFile.path!)
+				} catch let error as NSError {
+					err = error
+					print(err)
 				}
 			}
 		}
@@ -153,4 +165,3 @@ func main() {
 }
 
 main()
-
