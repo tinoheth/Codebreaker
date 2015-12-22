@@ -127,6 +127,8 @@ func main() {
 			}
 		}
 	}
+
+	var updateNeeded = false
 	if let targetURL = targetURL {
 		print("Using file \(targetURL)")
 		let doc = BreakpointFile(fileURL: targetURL)
@@ -140,15 +142,17 @@ func main() {
 			var date: AnyObject?
 			if ignoreChangeDate {
 				extractor.parseFile(file)
+				updateNeeded = true
 			} else {
 				try! file.getResourceValue(&date, forKey: NSURLAttributeModificationDateKey)
 				if date?.timeIntervalSinceDate(doc.lastUpdate) > 0 {
 					extractor.parseFile(file)
+					updateNeeded = true
 				}
 			}
 		}
 		doc.toXMLDocument().XMLDataWithOptions(Int(NSXMLNodePrettyPrint)).writeToURL(targetURL, atomically: true)
-		if let components = targetURL.pathComponents {
+		if let components = targetURL.pathComponents where updateNeeded {
 			let last = components.count - 5
 			if last > 0 {
 				let start = NSURL(fileURLWithPath: "/")
@@ -156,12 +160,10 @@ func main() {
 					return url.URLByAppendingPathComponent(component)
 				}
 				let projectFile = container.URLByAppendingPathComponent("project.pbxproj")
-				var err: NSError?
 				do {
 					try NSFileManager.defaultManager().setAttributes([NSFileModificationDate: NSDate()], ofItemAtPath: projectFile.path!)
 				} catch let error as NSError {
-					err = error
-					print(err)
+					print(error)
 				}
 			}
 		}

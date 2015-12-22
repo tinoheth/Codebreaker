@@ -69,7 +69,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-f"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
