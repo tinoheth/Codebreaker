@@ -8,12 +8,12 @@
 
 import Foundation
 
-println("Hello, World!")
-#if codebreak=true && ignore=40 && enabled=true && MyTag && tag=Mark
-	println("Look at me")
-	println("I'm a breakpoint action")
-	println("No self in here")
+print("Hello, World!")
+#if codebreak=true && ignore=0 && enabled=true && MyTag && tag=Mark
+	print("Look at me")
+	print("I'm a breakpoint action")
+	print("No self in here")
 #endif
-println("I'm done")
-println("(really)")
+print("I'm done")
+print("(really)")
 

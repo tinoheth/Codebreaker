@@ -88,6 +88,7 @@
 		A5BAED1F1AE25E7800C953F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Tino Heth";
 				TargetAttributes = {
@@ -236,6 +237,7 @@
 				A5BAED301AE25E7900C953F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

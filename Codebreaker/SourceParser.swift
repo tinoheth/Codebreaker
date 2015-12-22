@@ -106,7 +106,9 @@ class BreakpointExtractor {
 
 		func handleConfiguration(key: String?, value: String) {
 			if let key = key {
+				#if codebreak=false && enabled=false
 				print("\(key) = \(bufferString)")
+				#endif
 				switch (key) {
 				case "codebreak":
 					breakpoint.continueAfterRunningActions = (value == "false")
@@ -140,7 +142,9 @@ class BreakpointExtractor {
 					break
 				case "=":
 					// key scanned, look for value...
+					#if codebreak=false && enabled=false
 					print("Key found " + bufferString)
+					#endif
 					key = bufferString
 					bufferString = ""
 					break
@@ -171,9 +175,11 @@ class BreakpointExtractor {
 				bufferString.append(input)
 				quote = true
 			} else if input == "#" {
+				#if codebreak=false
 				print("Found breakpoint in \(context.fileURL) at \(context.lineNumber)")
+				#endif
 				breakpoint.startingLineNumber = UInt(context.lineNumber)
-				breakpoint.actions.append(DebuggerCommandAction(command: "expr " + bufferString))
+				breakpoint.actions.append(DebuggerCommandAction(command: "expr " + bufferString.stringByTrimmingCharactersInSet(.whitespaceCharacterSet())))
 				context.handler(breakpoint)
 				return Skipper()
 			} else {

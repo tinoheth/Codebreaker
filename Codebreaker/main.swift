@@ -16,11 +16,15 @@ enum FileExtension: String {
 }
 
 func walk(root: NSXMLElement) {
+	#if codebreak=false && enabled=false
 	print(root.name!)
+	#endif
 	if let attributes = root.attributes {
 		for attribute in attributes {
 			if let name = attribute.name {
+				#if codebreak=false && enabled=false
 				print("\(name) = \(attribute.objectValue!)")
+				#endif
 			}
 		}
 	}
@@ -75,7 +79,7 @@ func extractProjectFile(argument: String) -> (NSURL?, NSURL?) {
 }
 
 func main() {
-#if codebreak=true && ignore=0 && enabled=true && MyTag && tag=Mark
+#if codebreak=false && ignore=0 && enabled=true && MyTag && tag=Mark
 	print("Hello!")
 #endif
 
