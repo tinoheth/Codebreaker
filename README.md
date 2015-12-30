@@ -34,3 +34,11 @@ The breakpoints are created by a parser that looks for `#if codebreak`, and chan
 Yes ;-). As show in the example, you can set the ignore count and configure the breakpoint not to stop your programm (`codebreak=true` or just `codebreak` creates a really breaking breakpoint).
 Additionally, `shouldBeEnabled` can be used to (you'll figure out it's meaning).
 Actually, there are even more "parameters", but those aren't that useful right now (but I'm thinking of support tools to toggle whole groups of breakpoints).
+
+###So... how does this really work?
+1. Clone the repo
+2. Open your terminal and navigate to the project directory
+3. Run `xcodebuild install`
+4. Curse the stupid author because the default install location will be `/opt/bin`
+5. Navigate to you own project, type `/opt/bin/Codebreaker -f`
+6. Nothing happens... but it should when you change your own source to include at least one `#if codebreaker` (there is also a Workflow that will enclose Xcodes current selection in such an ifdef)
