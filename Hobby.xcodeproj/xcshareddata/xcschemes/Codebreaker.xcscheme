@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A551D6C81A599BE6006A0E74"
-               BuildableName = "Codebreaker"
-               BlueprintName = "Codebreaker"
-               ReferencedContainer = "container:Codebreaker.xcodeproj">
+               BuildableName = "hobby"
+               BlueprintName = "Hobby"
+               ReferencedContainer = "container:Hobby.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A551D6C81A599BE6006A0E74"
-            BuildableName = "Codebreaker"
-            BlueprintName = "Codebreaker"
-            ReferencedContainer = "container:Codebreaker.xcodeproj">
+            BuildableName = "hobby"
+            BlueprintName = "Hobby"
+            ReferencedContainer = "container:Hobby.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -47,7 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "$PROJECT_DIR"
+      customWorkingDirectory = "${PROJECT_DIR}"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -57,19 +57,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A551D6C81A599BE6006A0E74"
-            BuildableName = "Codebreaker"
-            BlueprintName = "Codebreaker"
-            ReferencedContainer = "container:Codebreaker.xcodeproj">
+            BuildableName = "hobby"
+            BlueprintName = "Hobby"
+            ReferencedContainer = "container:Hobby.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "../Breaktest"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "-f"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -86,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A551D6C81A599BE6006A0E74"
-            BuildableName = "Codebreaker"
-            BlueprintName = "Codebreaker"
-            ReferencedContainer = "container:Codebreaker.xcodeproj">
+            BuildableName = "hobby"
+            BlueprintName = "Hobby"
+            ReferencedContainer = "container:Hobby.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

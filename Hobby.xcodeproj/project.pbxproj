@@ -47,8 +47,8 @@
 /* Begin PBXFileReference section */
 		A50FA3C51A86222300402759 /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		A537A1561A8F9EDB006891AD /* SourceParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SourceParser.swift; path = Codebreaker/SourceParser.swift; sourceTree = SOURCE_ROOT; };
-		A551D6C91A599BE6006A0E74 /* Codebreaker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Codebreaker; sourceTree = BUILT_PRODUCTS_DIR; };
-		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = ./Codebreaker/main.swift; sourceTree = SOURCE_ROOT; };
+		A551D6C91A599BE6006A0E74 /* hobby */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hobby; sourceTree = BUILT_PRODUCTS_DIR; };
+		A551D6CC1A599BE6006A0E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = Codebreaker/main.swift; sourceTree = SOURCE_ROOT; };
 		A5578D1B1A869B2700C5A46E /* BreakpointFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakpointFile.swift; sourceTree = "<group>"; };
 		A5BAED311AE25FD300C953F4 /* Breakpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Breakpoint.swift; sourceTree = "<group>"; };
 		A5BAED341AE2601100C953F4 /* BreakpointAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakpointAction.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		A551D6CA1A599BE6006A0E74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A551D6C91A599BE6006A0E74 /* Codebreaker */,
+				A551D6C91A599BE6006A0E74 /* hobby */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A551D6C81A599BE6006A0E74 /* Codebreaker */ = {
+		A551D6C81A599BE6006A0E74 /* Hobby */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Codebreaker" */;
+			buildConfigurationList = A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Hobby" */;
 			buildPhases = (
 				A551D6C51A599BE6006A0E74 /* Sources */,
 				A551D6C61A599BE6006A0E74 /* Frameworks */,
@@ -130,9 +130,9 @@
 			);
 			dependencies = (
 			);
-			name = Codebreaker;
+			name = Hobby;
 			productName = Exterminator;
-			productReference = A551D6C91A599BE6006A0E74 /* Codebreaker */;
+			productReference = A551D6C91A599BE6006A0E74 /* hobby */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -151,7 +151,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Codebreaker" */;
+			buildConfigurationList = A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Hobby" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,7 +169,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				A551D6C81A599BE6006A0E74 /* Codebreaker */,
+				A551D6C81A599BE6006A0E74 /* Hobby */,
 			);
 		};
 /* End PBXProject section */
@@ -296,7 +296,7 @@
 		A551D6D11A599BE6006A0E74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = Codebreaker;
+				PRODUCT_NAME = hobby;
 			};
 			name = Debug;
 		};
@@ -304,14 +304,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = /opt/bin;
-				PRODUCT_NAME = Codebreaker;
+				PRODUCT_NAME = hobby;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Codebreaker" */ = {
+		A551D6C41A599BE6006A0E74 /* Build configuration list for PBXProject "Hobby" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A551D6CE1A599BE6006A0E74 /* Debug */,
@@ -320,7 +320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Codebreaker" */ = {
+		A551D6D01A599BE6006A0E74 /* Build configuration list for PBXNativeTarget "Hobby" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A551D6D11A599BE6006A0E74 /* Debug */,
