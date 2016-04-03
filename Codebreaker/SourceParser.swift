@@ -51,7 +51,7 @@ class BreakpointExtractor {
 		
 		override func scanChar(input: Character, context: Context) -> BreakpointExtractor.Scanner {
 			if input == string[index] {
-				index++
+				index = index.successor()
 				if index < string.endIndex {
 					return self
 				} else {
@@ -205,10 +205,10 @@ class BreakpointExtractor {
 			while index < input.endIndex {
 				let current = input[index]
 				if current == "\n" {
-					context.lineNumber++
+					context.lineNumber += 1
 				}
 				scanner = scanner.scanChar(current, context: context)
-				index++
+				index = index.successor()
 			}
 		}
 	}
