@@ -1,4 +1,4 @@
-# Codebreaker
+# Hobby
 Ugly tool to manage Xcode breakpoints inline (Swift only)
 
 Let's try an example:
@@ -10,7 +10,7 @@ Let's try an example:
 	#endif
 	print("I'm done")
 
-This code will just print two lines in the console, quite boring... but if you run Codebreak on the project, three things will happen:
+This code will just print two lines in the console, quite boring... but if you run Hobby on the project, three things will happen:
 
 1. Xcode crashes (not always - but but for many projects, it will just happen if you modify them while they are open)
 2. The code will still print just two lines in the console - unless you hit that location eleven times.
@@ -40,5 +40,5 @@ Actually, there are even more "parameters", but those aren't that useful right n
 2. Open your terminal and navigate to the project directory
 3. Run `xcodebuild install`
 4. Curse the stupid author because the default install location will be `/opt/bin`
-5. Navigate to you own project, type `/opt/bin/Codebreaker -f`
+5. Navigate to you own project, type `/opt/bin/hobby -f`
 6. Nothing happens... but it should when you change your own source to include at least one `#if codebreaker` (there is also a Workflow that will enclose Xcodes current selection in such an ifdef)
